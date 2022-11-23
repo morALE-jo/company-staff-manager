@@ -13,20 +13,35 @@
               <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
                   <label for="first_name" class="block text-sm font-medium text-gray-700">First name</label>
-                  <input v-model="employee.first_name" type="text" name="first_name" id="first_name" autocomplete="given-name" required 
+                  <input v-model="employee.first_name" type="text" name="first_name" id="first_name" autocomplete="given-name" 
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                  <div class="text-red-600 mt-1">
+                    <div :key="message" v-for="message in validationErrors?.first_name">
+                        {{ message }}
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                   <label for="last_name" class="block text-sm font-medium text-gray-700">Last name</label>
-                  <input v-model="employee.last_name" type="text" name="last_name" id="last_name" autocomplete="family-name" required
+                  <input v-model="employee.last_name" type="text" name="last_name" id="last_name" autocomplete="family-name"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                  <div class="text-red-600 mt-1">
+                    <div :key="message" v-for="message in validationErrors?.last_name">
+                        {{ message }}
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-span-6 sm:col-span-4">
                   <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
-                  <input v-model="employee.email" type="text" name="email" id="email" autocomplete="email" required
+                  <input v-model="employee.email" type="text" name="email" id="email" autocomplete="email"
                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm" />
+                  <div class="text-red-600 mt-1">
+                    <div :key="message" v-for="message in validationErrors?.email">
+                        {{ message }}
+                    </div>
+                  </div>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
@@ -36,6 +51,11 @@
                         {{ company.company_name }}
                     </option>
                   </select>
+                  <div class="text-red-600 mt-1">
+                    <div :key="message" v-for="message in validationErrors?.company_id">
+                        {{ message }}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -63,9 +83,9 @@
         })
 
         const { companies, getCompanies } = useCompanies()
-        const { storeEmployee } = useEmployees()
+        const { storeEmployee, validationErrors } = useEmployees()
         onMounted(getCompanies)
-        return { companies, employee, storeEmployee }
+        return { companies, employee, storeEmployee, validationErrors }
     },
     methods: {
       test() {

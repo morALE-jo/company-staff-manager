@@ -18,7 +18,6 @@ class EmployeeController extends Controller
 	 */
 	public function index(Request $request)
 	{
-
 		return EmployeeResource::collection(Employee::all());
 	}
 

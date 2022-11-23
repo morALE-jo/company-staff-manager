@@ -30,4 +30,9 @@ class StoreEmployeeRequest extends FormRequest
             'company_id' => 'required'
         ];
     }
+
+    public function attributes()
+    {
+        return ['company_id' => 'company'];
+    }
 }
