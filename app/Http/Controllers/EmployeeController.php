@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Resources\EmployeeResource;
+use App\Http\Requests\StoreEmployeeRequest;
 
 class EmployeeController extends Controller
 {
@@ -29,9 +30,9 @@ class EmployeeController extends Controller
 	 *
 	 * @return \Illuminate\Http\JsonResponse
 	 */
-	public function store(Request $request)
+	public function store(StoreEmployeeRequest $request)
 	{
-		$employee = Employee::create($request->all());
+		$employee = Employee::create($request->validated());
 		return response()->json($employee);
 	}
 

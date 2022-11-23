@@ -40,21 +40,14 @@
 </template>
 
 <script>
+import { onMounted } from "vue";
+import useEmployees from "../../composables/employees";
+
 export default {
-    data() {
-        return {
-            employees: []
-        }
-    },
-    mounted() {
-        this.fetchEmployees()
-    },
-    methods: {
-        fetchEmployees() {
-            axios.get('/employees')
-            .then(response => this.employees = response.data.data)
-            .catch(error => console.log(error))
-        }
+    setup() {
+        const { employees, getEmployees } = useEmployees()
+        onMounted(getEmployees)
+        return { employees }
     }
 }
 </script>

@@ -8,7 +8,7 @@
                     <img class="h-10 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="" />
                 </a>
                 <div class="ml-10 hidden space-x-8 lg:block">
-                    <router-link v-for="link in navigation" :key="link.name" :to="link.href" 
+                    <router-link v-for="link in navigation" :key="link.name" :to="{ name: link.to }" 
                         class="text-base font-medium text-white hover:text-indigo-50" active-class="border-b-2 border-indigo-400">
                         {{ link.name }}
                     </router-link>
@@ -16,7 +16,8 @@
             </div>
         </div>
         <div class="flex flex-wrap justify-center space-x-6 py-4 lg:hidden">
-            <a v-for="link in navigation" :key="link.name" :href="link.href" class="text-base font-medium text-white hover:text-indigo-50">{{ link.name }}</a>
+            <router-link v-for="link in navigation" :key="link.name" :to="{ name: link.to }" 
+            class="text-base font-medium text-white hover:text-indigo-50">{{ link.name }}</router-link>
         </div>
         </nav>
     </header>
@@ -47,8 +48,8 @@
 
 <script setup>
 const navigation = [
-  { name: 'Companies', href: "/" },
-  { name: 'Employees', href: "/employee/list" },
-  { name: 'Create Employee', href: "/employee/create" },
+  { name: 'Companies', to: 'company.index'},
+  { name: 'Employees', to: 'employee.index'},
+  { name: 'Create Employee', to: 'employee.create'},
 ]
 </script>

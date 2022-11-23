@@ -4,7 +4,7 @@ export default function useCompanies() {
     const companies = ref([])
 
     const getCompanies = async () => {
-        axios.get('/companies')
+        axios.get('/api/companies')
             .then(response => companies.value = response.data)
             .catch(error => console.log(error))
     }
