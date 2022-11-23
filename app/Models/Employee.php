@@ -25,4 +25,9 @@ class Employee extends Model
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function getCompanyName()
+    {
+        return $this->belongsTo(Company::class)->select('company_name');
+    }
 }

@@ -16,6 +16,6 @@ class EmployeeSeeder extends Seeder
     public function run()
     {
         // Create and add random employees to the created companies
-        Employee::factory(30)->create();
+        Employee::factory(10)->create();
     }
 }
